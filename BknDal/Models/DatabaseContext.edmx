@@ -1,0 +1,333 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BknModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="RealEstateObject">
+          <Key>
+            <PropertyRef Name="RealEstateObjectId" />
+          </Key>
+          <Property Name="RealEstateObjectId" Type="bigint" Nullable="false" />
+          <Property Name="Unid" Type="bigint" Nullable="false" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Code" Type="int" />
+          <Property Name="Infosource" Type="nvarchar(max)" />
+          <Property Name="Responsible" Type="int" />
+          <Property Name="ContactPhoneCode1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhone1" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhoneCode2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhone2" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhoneCode3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhone3" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhoneCode4" Type="nvarchar" MaxLength="50" />
+          <Property Name="ContactPhone4" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="DateReception" Type="date" />
+          <Property Name="DateRevision" Type="date" />
+          <Property Name="LastModification" Type="datetime" />
+          <Property Name="Archive" Type="nvarchar" MaxLength="10" />
+          <Property Name="Terms" Type="nvarchar" MaxLength="10" />
+          <Property Name="Seller" Type="nvarchar" MaxLength="10" />
+          <Property Name="StateDistrictId" Type="int" />
+          <Property Name="DirectionId" Type="int" />
+          <Property Name="TownDistance" Type="int" />
+          <Property Name="TownId" Type="int" />
+          <Property Name="TownName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TownDistrictId" Type="int" />
+          <Property Name="TownSubdistrictId" Type="int" />
+          <Property Name="StreetId" Type="int" />
+          <Property Name="StreetName" Type="nvarchar" MaxLength="50" />
+          <Property Name="MetroLineId" Type="int" />
+          <Property Name="MetroStationId" Type="int" />
+          <Property Name="HouseNumber" Type="int" />
+          <Property Name="BuildingNumber" Type="int" />
+          <Property Name="PositionX" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="PositionY" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Rooms" Type="int" />
+          <Property Name="SeparateRooms" Type="int" />
+          <Property Name="BuildingYear" Type="int" />
+          <Property Name="RepairYear" Type="int" />
+          <Property Name="Storey" Type="int" />
+          <Property Name="Storeys" Type="int" />
+          <Property Name="StoreyType" Type="nvarchar" MaxLength="50" />
+          <Property Name="HouseType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Layout" Type="nvarchar" MaxLength="50" />
+          <Property Name="AreaTotal" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="AreaLiving" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="AreaKitchen" Type="decimal" Precision="18" Scale="4" />
+          <Property Name="Levels" Type="int" />
+          <Property Name="CeilingHeight" Type="int" />
+          <Property Name="FloorType" Type="nvarchar" MaxLength="50" />
+          <Property Name="Lavatory" Type="nvarchar" MaxLength="50" />
+          <Property Name="Balcony" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Owner" Type="nvarchar" MaxLength="50" />
+          <Property Name="RepairState" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="text" />
+          <Property Name="ExtraInfo" Type="int" />
+          <Property Name="Description" Type="text" />
+          <Property Name="Link" Type="nvarchar(max)" />
+          <Property Name="Contract" Type="nvarchar" MaxLength="50" />
+          <Property Name="DtContractOpened" Type="date" />
+          <Property Name="DtContractClosed" Type="date" />
+          <Property Name="RequestId" Type="bigint" />
+          <Property Name="Price" Type="nvarchar" MaxLength="50" />
+          <Property Name="PriceHaggle" Type="int" />
+        </EntityType>
+        <EntityType Name="RealEstateObjectPhoto">
+          <Key>
+            <PropertyRef Name="RealEstateObjectPhotoId" />
+          </Key>
+          <Property Name="RealEstateObjectPhotoId" Type="bigint" Nullable="false" />
+          <Property Name="RealEstateObjectId" Type="bigint" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" />
+          <Property Name="Md5" Type="nvarchar(max)" />
+          <Property Name="isPrimary" Type="bit" />
+        </EntityType>
+        <Association Name="FK_Photo_RealEstateObject">
+          <End Role="RealEstateObject" Type="Self.RealEstateObject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RealEstateObjectPhoto" Type="Self.RealEstateObjectPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RealEstateObject">
+              <PropertyRef Name="RealEstateObjectId" />
+            </Principal>
+            <Dependent Role="RealEstateObjectPhoto">
+              <PropertyRef Name="RealEstateObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BknModelStoreContainer">
+          <EntitySet Name="RealEstateObject" EntityType="Self.RealEstateObject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RealEstateObjectPhoto" EntityType="Self.RealEstateObjectPhoto" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Photo_RealEstateObject" Association="Self.FK_Photo_RealEstateObject">
+            <End Role="RealEstateObject" EntitySet="RealEstateObject" />
+            <End Role="RealEstateObjectPhoto" EntitySet="RealEstateObjectPhoto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BknModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="RealEstateObject">
+          <Key>
+            <PropertyRef Name="RealEstateObjectId" />
+          </Key>
+          <Property Name="RealEstateObjectId" Type="Int64" Nullable="false" />
+          <Property Name="Unid" Type="Int64" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="Int32" />
+          <Property Name="Infosource" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Responsible" Type="Int32" />
+          <Property Name="ContactPhoneCode1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhoneCode2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhoneCode3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhoneCode4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactPhone4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DateReception" Type="DateTime" Precision="0" />
+          <Property Name="DateRevision" Type="DateTime" Precision="0" />
+          <Property Name="LastModification" Type="DateTime" Precision="3" />
+          <Property Name="Archive" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Terms" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="Seller" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="StateDistrictId" Type="Int32" />
+          <Property Name="DirectionId" Type="Int32" />
+          <Property Name="TownDistance" Type="Int32" />
+          <Property Name="TownId" Type="Int32" />
+          <Property Name="TownName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TownDistrictId" Type="Int32" />
+          <Property Name="TownSubdistrictId" Type="Int32" />
+          <Property Name="StreetId" Type="Int32" />
+          <Property Name="StreetName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MetroLineId" Type="Int32" />
+          <Property Name="MetroStationId" Type="Int32" />
+          <Property Name="HouseNumber" Type="Int32" />
+          <Property Name="BuildingNumber" Type="Int32" />
+          <Property Name="PositionX" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="PositionY" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Rooms" Type="Int32" />
+          <Property Name="SeparateRooms" Type="Int32" />
+          <Property Name="BuildingYear" Type="Int32" />
+          <Property Name="RepairYear" Type="Int32" />
+          <Property Name="Storey" Type="Int32" />
+          <Property Name="Storeys" Type="Int32" />
+          <Property Name="StoreyType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="HouseType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Layout" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AreaTotal" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="AreaLiving" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="AreaKitchen" Type="Decimal" Precision="18" Scale="4" />
+          <Property Name="Levels" Type="Int32" />
+          <Property Name="CeilingHeight" Type="Int32" />
+          <Property Name="FloorType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Lavatory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Balcony" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Owner" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RepairState" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ExtraInfo" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Link" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Contract" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DtContractOpened" Type="DateTime" Precision="0" />
+          <Property Name="DtContractClosed" Type="DateTime" Precision="0" />
+          <Property Name="RequestId" Type="Int64" />
+          <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PriceHaggle" Type="Int32" />
+          <NavigationProperty Name="RealEstateObjectPhoto" Relationship="Self.FK_Photo_RealEstateObject" FromRole="RealEstateObject" ToRole="RealEstateObjectPhoto" />
+        </EntityType>
+        <EntityType Name="RealEstateObjectPhoto">
+          <Key>
+            <PropertyRef Name="RealEstateObjectPhotoId" />
+          </Key>
+          <Property Name="RealEstateObjectPhotoId" Type="Int64" Nullable="false" />
+          <Property Name="RealEstateObjectId" Type="Int64" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Md5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isPrimary" Type="Boolean" />
+          <NavigationProperty Name="RealEstateObject" Relationship="Self.FK_Photo_RealEstateObject" FromRole="RealEstateObjectPhoto" ToRole="RealEstateObject" />
+        </EntityType>
+        <Association Name="FK_Photo_RealEstateObject">
+          <End Role="RealEstateObject" Type="Self.RealEstateObject" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RealEstateObjectPhoto" Type="Self.RealEstateObjectPhoto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RealEstateObject">
+              <PropertyRef Name="RealEstateObjectId" />
+            </Principal>
+            <Dependent Role="RealEstateObjectPhoto">
+              <PropertyRef Name="RealEstateObjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RealEstateObject" EntityType="Self.RealEstateObject" />
+          <EntitySet Name="RealEstateObjectPhoto" EntityType="Self.RealEstateObjectPhoto" />
+          <AssociationSet Name="FK_Photo_RealEstateObject" Association="Self.FK_Photo_RealEstateObject">
+            <End Role="RealEstateObject" EntitySet="RealEstateObject" />
+            <End Role="RealEstateObjectPhoto" EntitySet="RealEstateObjectPhoto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BknModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+          <EntitySetMapping Name="RealEstateObject">
+            <EntityTypeMapping TypeName="BknModel.RealEstateObject">
+              <MappingFragment StoreEntitySet="RealEstateObject">
+                <ScalarProperty Name="RealEstateObjectId" ColumnName="RealEstateObjectId" />
+                <ScalarProperty Name="Unid" ColumnName="Unid" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Infosource" ColumnName="Infosource" />
+                <ScalarProperty Name="Responsible" ColumnName="Responsible" />
+                <ScalarProperty Name="ContactPhoneCode1" ColumnName="ContactPhoneCode1" />
+                <ScalarProperty Name="ContactPhone1" ColumnName="ContactPhone1" />
+                <ScalarProperty Name="ContactPhoneCode2" ColumnName="ContactPhoneCode2" />
+                <ScalarProperty Name="ContactPhone2" ColumnName="ContactPhone2" />
+                <ScalarProperty Name="ContactPhoneCode3" ColumnName="ContactPhoneCode3" />
+                <ScalarProperty Name="ContactPhone3" ColumnName="ContactPhone3" />
+                <ScalarProperty Name="ContactPhoneCode4" ColumnName="ContactPhoneCode4" />
+                <ScalarProperty Name="ContactPhone4" ColumnName="ContactPhone4" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DateReception" ColumnName="DateReception" />
+                <ScalarProperty Name="DateRevision" ColumnName="DateRevision" />
+                <ScalarProperty Name="LastModification" ColumnName="LastModification" />
+                <ScalarProperty Name="Archive" ColumnName="Archive" />
+                <ScalarProperty Name="Terms" ColumnName="Terms" />
+                <ScalarProperty Name="Seller" ColumnName="Seller" />
+                <ScalarProperty Name="StateDistrictId" ColumnName="StateDistrictId" />
+                <ScalarProperty Name="DirectionId" ColumnName="DirectionId" />
+                <ScalarProperty Name="TownDistance" ColumnName="TownDistance" />
+                <ScalarProperty Name="TownId" ColumnName="TownId" />
+                <ScalarProperty Name="TownName" ColumnName="TownName" />
+                <ScalarProperty Name="TownDistrictId" ColumnName="TownDistrictId" />
+                <ScalarProperty Name="TownSubdistrictId" ColumnName="TownSubdistrictId" />
+                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+                <ScalarProperty Name="StreetName" ColumnName="StreetName" />
+                <ScalarProperty Name="MetroLineId" ColumnName="MetroLineId" />
+                <ScalarProperty Name="MetroStationId" ColumnName="MetroStationId" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="BuildingNumber" ColumnName="BuildingNumber" />
+                <ScalarProperty Name="PositionX" ColumnName="PositionX" />
+                <ScalarProperty Name="PositionY" ColumnName="PositionY" />
+                <ScalarProperty Name="Rooms" ColumnName="Rooms" />
+                <ScalarProperty Name="SeparateRooms" ColumnName="SeparateRooms" />
+                <ScalarProperty Name="BuildingYear" ColumnName="BuildingYear" />
+                <ScalarProperty Name="RepairYear" ColumnName="RepairYear" />
+                <ScalarProperty Name="Storey" ColumnName="Storey" />
+                <ScalarProperty Name="Storeys" ColumnName="Storeys" />
+                <ScalarProperty Name="StoreyType" ColumnName="StoreyType" />
+                <ScalarProperty Name="HouseType" ColumnName="HouseType" />
+                <ScalarProperty Name="Layout" ColumnName="Layout" />
+                <ScalarProperty Name="AreaTotal" ColumnName="AreaTotal" />
+                <ScalarProperty Name="AreaLiving" ColumnName="AreaLiving" />
+                <ScalarProperty Name="AreaKitchen" ColumnName="AreaKitchen" />
+                <ScalarProperty Name="Levels" ColumnName="Levels" />
+                <ScalarProperty Name="CeilingHeight" ColumnName="CeilingHeight" />
+                <ScalarProperty Name="FloorType" ColumnName="FloorType" />
+                <ScalarProperty Name="Lavatory" ColumnName="Lavatory" />
+                <ScalarProperty Name="Balcony" ColumnName="Balcony" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="RepairState" ColumnName="RepairState" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ExtraInfo" ColumnName="ExtraInfo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Contract" ColumnName="Contract" />
+                <ScalarProperty Name="DtContractOpened" ColumnName="DtContractOpened" />
+                <ScalarProperty Name="DtContractClosed" ColumnName="DtContractClosed" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="PriceHaggle" ColumnName="PriceHaggle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RealEstateObjectPhoto">
+            <EntityTypeMapping TypeName="BknModel.RealEstateObjectPhoto">
+              <MappingFragment StoreEntitySet="RealEstateObjectPhoto">
+                <ScalarProperty Name="RealEstateObjectPhotoId" ColumnName="RealEstateObjectPhotoId" />
+                <ScalarProperty Name="RealEstateObjectId" ColumnName="RealEstateObjectId" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Md5" ColumnName="Md5" />
+                <ScalarProperty Name="isPrimary" ColumnName="isPrimary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
