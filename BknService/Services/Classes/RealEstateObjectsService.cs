@@ -17,5 +17,10 @@ namespace BknService.Services.Classes
         {
             _realEstateObjectsRepository = jobsRepository;
         }
+
+        public async Task ImportRealEstateObjects()
+        {
+            await _realEstateObjectsRepository.ImportRealEstateObjects();
+        }
     }
 }
