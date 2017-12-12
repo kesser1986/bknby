@@ -11,7 +11,16 @@ namespace BknDal.Repositories.Classes
         {
             using (var db = DbContextFactory.OpenContext())
             {
-                
+                var realEstateObject = new RealEstateObject()
+                {
+                    Unid = 003413766957,
+                    Address = "Минск, Скрыганова ул. 2",
+                    Code = 766957,
+                    Infosource = "база3.0",
+                    Responsible = 4672
+                };
+                db.RealEstateObject.Add(realEstateObject);
+                await db.SaveChangesAsync();
             }
         }
     }
