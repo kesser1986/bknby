@@ -20,13 +20,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Logo", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+                @Html.ActionLink("BKN", "Index", "RealEstateObjects", new {area = ""}, new {@class = "navbar-brand"})
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Import", "UpdateObjects", "RealEstateObjects")</li>
+                    <li>@Html.ActionLink("Export", "About", "RealEstateObjects")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,8 +33,14 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr/>
-        <footer></footer>
+    </div>
+
+    <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <div class="container">
+            <div class="navbar-header">
+                @Html.ActionLink("BKN", "Index", "RealEstateObjects", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+        </div>
     </div>
 }
 else

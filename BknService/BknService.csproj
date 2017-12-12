@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Classes\BaseService.cs" />
+    <Compile Include="Services\Classes\RealEstateObjectsService.cs" />
+    <Compile Include="Services\Interfaces\IRealEstateObjectsService.cs" />
     <Compile Include="Services\Interfaces\IService.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace bknby.Controllers
 {
-    public class HomeController : Controller
+    public class RealEstateObjectsController : Controller
     {
         [Authorize]
         public ActionResult Index()
