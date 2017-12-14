@@ -14,12 +14,6 @@ namespace BknDal.Models
     
     public partial class RealEstateObject
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public RealEstateObject()
-        {
-            this.RealEstateObjectPhoto = new HashSet<RealEstateObjectPhoto>();
-        }
-    
         public long RealEstateObjectId { get; set; }
         public long Unid { get; set; }
         public string Address { get; set; }
@@ -53,7 +47,7 @@ namespace BknDal.Models
         public Nullable<int> MetroLineId { get; set; }
         public Nullable<int> MetroStationId { get; set; }
         public Nullable<int> HouseNumber { get; set; }
-        public Nullable<int> BuildingNumber { get; set; }
+        public string BuildingNumber { get; set; }
         public Nullable<decimal> PositionX { get; set; }
         public Nullable<decimal> PositionY { get; set; }
         public Nullable<int> Rooms { get; set; }
@@ -69,7 +63,7 @@ namespace BknDal.Models
         public Nullable<decimal> AreaLiving { get; set; }
         public Nullable<decimal> AreaKitchen { get; set; }
         public Nullable<int> Levels { get; set; }
-        public Nullable<int> CeilingHeight { get; set; }
+        public Nullable<decimal> CeilingHeight { get; set; }
         public string FloorType { get; set; }
         public string Lavatory { get; set; }
         public string Balcony { get; set; }
@@ -86,8 +80,5 @@ namespace BknDal.Models
         public Nullable<long> RequestId { get; set; }
         public string Price { get; set; }
         public Nullable<int> PriceHaggle { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RealEstateObjectPhoto> RealEstateObjectPhoto { get; set; }
     }
 }

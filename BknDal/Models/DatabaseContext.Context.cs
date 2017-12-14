@@ -26,6 +26,5 @@ namespace BknDal.Models
         }
     
         public virtual DbSet<RealEstateObject> RealEstateObject { get; set; }
-        public virtual DbSet<RealEstateObjectPhoto> RealEstateObjectPhoto { get; set; }
     }
 }

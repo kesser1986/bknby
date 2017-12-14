@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="RealEstateObjectId" />
           </Key>
-          <Property Name="RealEstateObjectId" Type="bigint" Nullable="false" />
+          <Property Name="RealEstateObjectId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Unid" Type="bigint" Nullable="false" />
           <Property Name="Address" Type="nvarchar(max)" />
           <Property Name="Code" Type="int" />
@@ -42,7 +42,7 @@
           <Property Name="MetroLineId" Type="int" />
           <Property Name="MetroStationId" Type="int" />
           <Property Name="HouseNumber" Type="int" />
-          <Property Name="BuildingNumber" Type="int" />
+          <Property Name="BuildingNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="PositionX" Type="decimal" Precision="18" Scale="4" />
           <Property Name="PositionY" Type="decimal" Precision="18" Scale="4" />
           <Property Name="Rooms" Type="int" />
@@ -58,7 +58,7 @@
           <Property Name="AreaLiving" Type="decimal" Precision="18" Scale="4" />
           <Property Name="AreaKitchen" Type="decimal" Precision="18" Scale="4" />
           <Property Name="Levels" Type="int" />
-          <Property Name="CeilingHeight" Type="int" />
+          <Property Name="CeilingHeight" Type="decimal" Precision="18" Scale="4" />
           <Property Name="FloorType" Type="nvarchar" MaxLength="50" />
           <Property Name="Lavatory" Type="nvarchar" MaxLength="50" />
           <Property Name="Balcony" Type="nvarchar" MaxLength="50" />
@@ -76,37 +76,8 @@
           <Property Name="Price" Type="nvarchar" MaxLength="50" />
           <Property Name="PriceHaggle" Type="int" />
         </EntityType>
-        <EntityType Name="RealEstateObjectPhoto">
-          <Key>
-            <PropertyRef Name="RealEstateObjectPhotoId" />
-          </Key>
-          <Property Name="RealEstateObjectPhotoId" Type="bigint" Nullable="false" />
-          <Property Name="RealEstateObjectId" Type="bigint" Nullable="false" />
-          <Property Name="Url" Type="nvarchar(max)" />
-          <Property Name="Md5" Type="nvarchar(max)" />
-          <Property Name="isPrimary" Type="bit" />
-        </EntityType>
-        <Association Name="FK_Photo_RealEstateObject">
-          <End Role="RealEstateObject" Type="Self.RealEstateObject" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RealEstateObjectPhoto" Type="Self.RealEstateObjectPhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RealEstateObject">
-              <PropertyRef Name="RealEstateObjectId" />
-            </Principal>
-            <Dependent Role="RealEstateObjectPhoto">
-              <PropertyRef Name="RealEstateObjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="BknModelStoreContainer">
           <EntitySet Name="RealEstateObject" EntityType="Self.RealEstateObject" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RealEstateObjectPhoto" EntityType="Self.RealEstateObjectPhoto" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Photo_RealEstateObject" Association="Self.FK_Photo_RealEstateObject">
-            <End Role="RealEstateObject" EntitySet="RealEstateObject" />
-            <End Role="RealEstateObjectPhoto" EntitySet="RealEstateObjectPhoto" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:StorageModels>
@@ -117,7 +88,7 @@
           <Key>
             <PropertyRef Name="RealEstateObjectId" />
           </Key>
-          <Property Name="RealEstateObjectId" Type="Int64" Nullable="false" />
+          <Property Name="RealEstateObjectId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Unid" Type="Int64" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Code" Type="Int32" />
@@ -150,7 +121,7 @@
           <Property Name="MetroLineId" Type="Int32" />
           <Property Name="MetroStationId" Type="Int32" />
           <Property Name="HouseNumber" Type="Int32" />
-          <Property Name="BuildingNumber" Type="Int32" />
+          <Property Name="BuildingNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PositionX" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="PositionY" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="Rooms" Type="Int32" />
@@ -166,7 +137,7 @@
           <Property Name="AreaLiving" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="AreaKitchen" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="Levels" Type="Int32" />
-          <Property Name="CeilingHeight" Type="Int32" />
+          <Property Name="CeilingHeight" Type="Decimal" Precision="18" Scale="4" />
           <Property Name="FloorType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Lavatory" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Balcony" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -183,47 +154,16 @@
           <Property Name="RequestId" Type="Int64" />
           <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PriceHaggle" Type="Int32" />
-          <NavigationProperty Name="RealEstateObjectPhoto" Relationship="Self.FK_Photo_RealEstateObject" FromRole="RealEstateObject" ToRole="RealEstateObjectPhoto" />
         </EntityType>
-        <EntityType Name="RealEstateObjectPhoto">
-          <Key>
-            <PropertyRef Name="RealEstateObjectPhotoId" />
-          </Key>
-          <Property Name="RealEstateObjectPhotoId" Type="Int64" Nullable="false" />
-          <Property Name="RealEstateObjectId" Type="Int64" Nullable="false" />
-          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Md5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="isPrimary" Type="Boolean" />
-          <NavigationProperty Name="RealEstateObject" Relationship="Self.FK_Photo_RealEstateObject" FromRole="RealEstateObjectPhoto" ToRole="RealEstateObject" />
-        </EntityType>
-        <Association Name="FK_Photo_RealEstateObject">
-          <End Role="RealEstateObject" Type="Self.RealEstateObject" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="RealEstateObjectPhoto" Type="Self.RealEstateObjectPhoto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="RealEstateObject">
-              <PropertyRef Name="RealEstateObjectId" />
-            </Principal>
-            <Dependent Role="RealEstateObjectPhoto">
-              <PropertyRef Name="RealEstateObjectId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DatabaseEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="RealEstateObject" EntityType="Self.RealEstateObject" />
-          <EntitySet Name="RealEstateObjectPhoto" EntityType="Self.RealEstateObjectPhoto" />
-          <AssociationSet Name="FK_Photo_RealEstateObject" Association="Self.FK_Photo_RealEstateObject">
-            <End Role="RealEstateObject" EntitySet="RealEstateObject" />
-            <End Role="RealEstateObjectPhoto" EntitySet="RealEstateObjectPhoto" />
-          </AssociationSet>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="BknModelStoreContainer" CdmEntityContainer="DatabaseEntities">
+        <EntityContainerMapping StorageEntityContainer="BknModelStoreContainer" CdmEntityContainer="Entities">
           <EntitySetMapping Name="RealEstateObject">
             <EntityTypeMapping TypeName="BknModel.RealEstateObject">
               <MappingFragment StoreEntitySet="RealEstateObject">
@@ -293,17 +233,6 @@
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="PriceHaggle" ColumnName="PriceHaggle" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RealEstateObjectPhoto">
-            <EntityTypeMapping TypeName="BknModel.RealEstateObjectPhoto">
-              <MappingFragment StoreEntitySet="RealEstateObjectPhoto">
-                <ScalarProperty Name="RealEstateObjectPhotoId" ColumnName="RealEstateObjectPhotoId" />
-                <ScalarProperty Name="RealEstateObjectId" ColumnName="RealEstateObjectId" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-                <ScalarProperty Name="Md5" ColumnName="Md5" />
-                <ScalarProperty Name="isPrimary" ColumnName="isPrimary" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

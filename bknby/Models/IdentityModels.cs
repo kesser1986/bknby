@@ -21,7 +21,7 @@ namespace bknby.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("bknProd", throwIfV1Schema: false)
+            : base("bknProdUsers", throwIfV1Schema: false)
         {
         }
 
