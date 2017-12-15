@@ -1,18 +1,37 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using BknDal.Models;
 using BknDal.Repositories.Interfaces;
+using System.Data.Entity;
 
 namespace BknDal.Repositories.Classes
 {
     public class RealEstateObjectsRepository : BaseRepository<RealEstateObject, long>, IRealEstateObjectsRepository
     {
-        public async Task ImportRealEstateObjects()
+        public List<RealEstateObject> GetRealEstateObjects()
+        {
+            using(var db = DbContextFactory.OpenContext())
+            {
+                var result = db.RealEstateObject.Where(p => p.RealEstateObjectId > 0).ToList();
+
+                return result;
+            }
+        }
+
+        public void ImportRealEstateObjects()
         {
             using (var db = DbContextFactory.OpenContext())
             {
+                var toRemove = db.RealEstateObject.Where(p => p.RealEstateObjectId > 0).ToList();
+                if(toRemove != null)
+                {
+                    db.RealEstateObject.RemoveRange(toRemove);
+                    db.SaveChanges();
+                }
+
                 XDocument xdoc = XDocument.Load("http://crm.t-s.by/xml/xml_flats_realt.php");
                 var records = xdoc.Element("uedb")?.Element("table")?.Elements("record");
                 if (records != null && records.Any())
@@ -88,7 +107,7 @@ namespace BknDal.Repositories.Classes
                         db.RealEstateObject.Add(itemObject);
                     }
                 }
-                await db.SaveChangesAsync();
+                db.SaveChanges();
             }
         }
     }

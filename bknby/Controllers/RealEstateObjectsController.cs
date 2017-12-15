@@ -8,6 +8,9 @@ using BknDal.Repositories.Interfaces;
 using BknService.Services.Classes;
 using BknService.Services.Interfaces;
 using Ninject;
+using BknDal.Models;
+using AutoMapper;
+using BknDto.Dto;
 
 namespace bknby.Controllers
 {
@@ -23,16 +26,19 @@ namespace bknby.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            var model = _realEstateObjectsService.GetRealEstateObjects();
+            var result = Mapper.Map<List<RealEstateObjectDto>>(model);
+            return View(result);
         }
 
         [Authorize]
         public ActionResult ImportRealEstateObjects()
         {
-
             _realEstateObjectsService.ImportRealEstateObjects();
+            var model = _realEstateObjectsService.GetRealEstateObjects();
+            var result = Mapper.Map<List<RealEstateObjectDto>>(model);
 
-            return View("Index");
+            return View("Index", result);
         }
 
         [Authorize]

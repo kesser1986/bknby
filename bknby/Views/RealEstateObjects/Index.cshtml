@@ -1,8 +1,11 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using BknDto.Dto
+@model IEnumerable<RealEstateObjectDto>
+
+@{
+    ViewBag.Title = "Главная страница";
 }
 
-<table class="table">
+<table class="table table-hover">
     <thead>
     <tr>
         <th scope="col">Имя объекта</th>
@@ -12,27 +15,20 @@
         <th scope="col">onliner.by</th>
     </tr>
     </thead>
-    <tbody>
-    <tr>
-        <td><a href="#">Объект 1</a></td>
-        <td><input type="checkbox" value="1" checked="checked"></td>
-        <td><input type="checkbox" value="1" checked="checked"></td>
-        <td><input type="checkbox" value="1" checked="checked"></td>
-        <td><input type="checkbox" value="1"></td>
-    </tr>
-        <tr>
-            <td><a href="#">Объект 2</a></td>
-            <td><input type="checkbox" value="1" checked="checked"></td>
-            <td><input type="checkbox" value="1" checked="checked"></td>
-            <td><input type="checkbox" value="1" checked="checked"></td>
-            <td><input type="checkbox" value="1"></td>
-        </tr>
-        <tr>
-            <td><a href="#">Объект 3</a></td>
-            <td><input type="checkbox" value="1" checked="checked"></td>
-            <td><input type="checkbox" value="1" checked="checked"></td>
-            <td><input type="checkbox" value="1" checked="checked"></td>
-            <td><input type="checkbox" value="1"></td>
-        </tr>
+    <tbody id="myTable">
+    @foreach (var item in Model)
+    {
+      <tr>
+        <td><a href="#">@item.Address</a></td>
+        <td><span class="search-checkbox  icon icon-ok"></span></td>
+        <td><span class="search-checkbox  icon icon-ok"></span></td>
+        <td><span class="search-checkbox  icon icon-ok"></span></td>
+        <td><span class="search-checkbox  icon icon-ok"></span></td>
+      </tr>
+    }
     </tbody>
 </table>
+
+<div class="col-md-12 text-center paginator">
+  <ul class="pagination pagination-large" id="myPager"></ul>
+</div>

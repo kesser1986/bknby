@@ -21,6 +21,8 @@ namespace bknby
             var kernel = new StandardKernel(registrations);
             kernel.Unbind<ModelValidatorProvider>();
             DependencyResolver.SetResolver(new NinjectDependencyResolver(kernel));
+
+            MapperConfig.RegisterMapping();
         }
     }
 }

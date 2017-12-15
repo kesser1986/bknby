@@ -13,14 +13,19 @@ namespace BknService.Services.Classes
     {
         private readonly IRealEstateObjectsRepository _realEstateObjectsRepository;
 
-        public RealEstateObjectsService(IRealEstateObjectsRepository jobsRepository) : base(jobsRepository)
+        public RealEstateObjectsService(IRealEstateObjectsRepository realEstateObjectsRepository) : base(realEstateObjectsRepository)
         {
-            _realEstateObjectsRepository = jobsRepository;
+            _realEstateObjectsRepository = realEstateObjectsRepository;
         }
 
-        public async Task ImportRealEstateObjects()
+        public List<RealEstateObject> GetRealEstateObjects()
         {
-            await _realEstateObjectsRepository.ImportRealEstateObjects();
+            return _realEstateObjectsRepository.GetRealEstateObjects();
+        }
+
+        public void ImportRealEstateObjects()
+        {
+            _realEstateObjectsRepository.ImportRealEstateObjects();
         }
     }
 }

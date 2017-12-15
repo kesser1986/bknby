@@ -9,6 +9,9 @@ namespace BknService.Services.Interfaces
 {
     public interface IRealEstateObjectsService : IService<RealEstateObject, long>
     {
-        Task ImportRealEstateObjects();
+        void ImportRealEstateObjects();
+        List<RealEstateObject> GetRealEstateObjects();
     }
+
+    
 }
