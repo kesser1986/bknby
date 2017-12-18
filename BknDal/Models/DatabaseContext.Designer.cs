@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Kiryl\Work\megarost.org\Multilisting\bknby\bknby\BknDal\Models\DatabaseContext.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\D\My Folder\Test projects\bknby\BknDal\Models\DatabaseContext.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

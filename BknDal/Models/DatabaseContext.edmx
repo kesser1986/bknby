@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="BknModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="BknModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="RealEstateObject">
           <Key>
             <PropertyRef Name="RealEstateObjectId" />
@@ -76,11 +76,21 @@
           <Property Name="Price" Type="nvarchar" MaxLength="50" />
           <Property Name="PriceHaggle" Type="int" />
         </EntityType>
+        <EntityType Name="RealEstateObjectPhoto">
+          <Key>
+            <PropertyRef Name="RealEstateObjectPhotoId" />
+          </Key>
+          <Property Name="RealEstateObjectPhotoId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Unid" Type="bigint" Nullable="false" />
+          <Property Name="Url" Type="nvarchar(max)" />
+          <Property Name="Md5" Type="nvarchar(max)" />
+          <Property Name="isPrimary" Type="bit" />
+        </EntityType>
         <EntityContainer Name="BknModelStoreContainer">
           <EntitySet Name="RealEstateObject" EntityType="Self.RealEstateObject" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RealEstateObjectPhoto" EntityType="Self.RealEstateObjectPhoto" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="BknModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -157,7 +167,18 @@
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="RealEstateObject" EntityType="Self.RealEstateObject" />
+          <EntitySet Name="RealEstateObjectPhoto" EntityType="BknModel.RealEstateObjectPhoto" />
         </EntityContainer>
+        <EntityType Name="RealEstateObjectPhoto">
+          <Key>
+            <PropertyRef Name="RealEstateObjectPhotoId" />
+          </Key>
+          <Property Name="RealEstateObjectPhotoId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Unid" Type="Int64" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Md5" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="isPrimary" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -233,6 +254,17 @@
                 <ScalarProperty Name="RequestId" ColumnName="RequestId" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="PriceHaggle" ColumnName="PriceHaggle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RealEstateObjectPhoto">
+            <EntityTypeMapping TypeName="BknModel.RealEstateObjectPhoto">
+              <MappingFragment StoreEntitySet="RealEstateObjectPhoto">
+                <ScalarProperty Name="isPrimary" ColumnName="isPrimary" />
+                <ScalarProperty Name="Md5" ColumnName="Md5" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Unid" ColumnName="Unid" />
+                <ScalarProperty Name="RealEstateObjectPhotoId" ColumnName="RealEstateObjectPhotoId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

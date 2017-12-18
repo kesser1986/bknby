@@ -25,12 +25,14 @@ namespace BknDal.Repositories.Classes
         {
             using (var db = DbContextFactory.OpenContext())
             {
-                var toRemove = db.RealEstateObject.Where(p => p.RealEstateObjectId > 0).ToList();
-                if(toRemove != null)
-                {
-                    db.RealEstateObject.RemoveRange(toRemove);
-                    db.SaveChanges();
-                }
+                var toRemoveObjects = db.RealEstateObject.Where(p => p.RealEstateObjectId > 0).ToList();
+                var toRemoveObjectsPhotos = db.RealEstateObjectPhoto.Where(p => p.RealEstateObjectPhotoId > 0).ToList();
+                if(toRemoveObjects != null)
+                    db.RealEstateObject.RemoveRange(toRemoveObjects);
+                if (toRemoveObjectsPhotos != null)
+                    db.RealEstateObjectPhoto.RemoveRange(toRemoveObjectsPhotos);
+
+                db.SaveChanges();
 
                 XDocument xdoc = XDocument.Load("http://crm.t-s.by/xml/xml_flats_realt.php");
                 var records = xdoc.Element("uedb")?.Element("table")?.Elements("record");
@@ -104,6 +106,19 @@ namespace BknDal.Repositories.Classes
                         itemObject.RequestId = string.IsNullOrEmpty(record.Element("request_id")?.Value) ? -1 : int.Parse(record.Element("request_id")?.Value);
                         itemObject.Price = record.Element("price")?.Value;
                         itemObject.PriceHaggle = string.IsNullOrEmpty(record.Element("price_haggle")?.Value) ? -1 : int.Parse(record.Element("price_haggle")?.Value);
+
+                        var photos = record.Element("photos")?.Elements("photo");
+                        foreach(var photo in photos)
+                        {
+                            var objectPhoto = new RealEstateObjectPhoto();
+                            objectPhoto.Unid = string.IsNullOrEmpty(record.Element("unid")?.Value) ? -1 : long.Parse(record.Element("unid")?.Value);
+                            objectPhoto.Url = photo.Attribute("url")?.Value;
+                            objectPhoto.Md5 = photo.Attribute("md5")?.Value;
+                            var primary = photo.Attribute("primary")?.Value;
+                            objectPhoto.isPrimary = (primary != null && primary == "1") ? true : false;
+                            db.RealEstateObjectPhoto.Add(objectPhoto);
+                        }
+
                         db.RealEstateObject.Add(itemObject);
                     }
                 }
