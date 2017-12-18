@@ -30,6 +30,9 @@ namespace bknby
             bundles.Add(new StyleBundle("~/bundles/general").Include(
                         "~/Scripts/general.js"));
 
+            bundles.Add(new StyleBundle("~/bundles/lightslider").Include(
+                        "~/Scripts/lightslider.js",
+                        "~/Content/site.css"));
         }
     }
 }

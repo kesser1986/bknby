@@ -19,7 +19,7 @@
     @foreach (var item in Model)
     {
       <tr>
-        <td><a href="#">@item.Address</a></td>
+        <td>@Html.ActionLink(item.Address, "GetRealEstateObject", "RealEstateObjects", new { id = item.RealEstateObjectId}, null)</td>
         <td><span class="search-checkbox  icon icon-ok"></span></td>
         <td><span class="search-checkbox  icon icon-ok"></span></td>
         <td><span class="search-checkbox  icon icon-ok"></span></td>

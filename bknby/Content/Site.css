@@ -128,3 +128,88 @@ textarea {
 
 /*******************************/
 
+/*TEMP*/
+
+.obarea {
+    background-color: #fefdfd;
+    box-shadow: 0 2px 1.96px 0.04px rgba(159,157,157,.35);
+    padding: 23px 11px 10px;
+    margin-left: 20px;
+    width: 300px;
+}
+
+.obarea__rows {
+    display: inline-block;
+    width: 100%;
+    line-height: 14px;
+    margin-bottom: 7px;
+}
+
+.obarea__characteristic {
+    width: 60%;
+    color: #797979;
+    font-size: 14px;
+}
+
+.obarea__value {
+    float: right;
+    width: 50%;
+    text-align: right;
+    color: #3b3d3e;
+    font-size: 16px;
+}
+
+.description {
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background: #fff;
+    padding: 22px 22px 35px 37px;
+    min-height: 530px;
+}
+
+.description__charact {
+    font-family: 'Conv_Foco Corp Bold',Sans-Serif;
+    color: #414040;
+    font-size: 18px;
+    margin-bottom: 25px;
+}
+
+.description__rows {
+    display: inline-block;
+    width: 100%;
+    line-height: 14px;
+    margin-bottom: 4px;
+}
+
+.description__characteristic {
+    width: 50%;
+    color: #797979;
+    font-size: 14px;
+}
+
+.description__value {
+    float: right;
+    width: 50%;
+    text-align: left;
+    color: #414040;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.description__title {
+    font-family: 'Conv_Foco Corp Bold',Sans-Serif;
+    color: #414040;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.description__text {
+    color: #414040;
+    font-size: 16px;
+    line-height: 17px;
+    margin-bottom: 37px;
+}
+
+/******/
+

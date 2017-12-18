@@ -18,6 +18,16 @@ namespace BknService.Services.Classes
             _realEstateObjectsRepository = realEstateObjectsRepository;
         }
 
+        public RealEstateObject GetRealEstateObject(int realEstateObjectId)
+        {
+            return _realEstateObjectsRepository.GetRealEstateObject(realEstateObjectId);
+        }
+
+        public List<RealEstateObjectPhoto> GetRealEstateObjectPhotos(long unid)
+        {
+            return _realEstateObjectsRepository.GetRealEstateObjectPhotos(unid);
+        }
+
         public List<RealEstateObject> GetRealEstateObjects()
         {
             return _realEstateObjectsRepository.GetRealEstateObjects();

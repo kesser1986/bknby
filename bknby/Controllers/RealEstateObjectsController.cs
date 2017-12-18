@@ -32,6 +32,18 @@ namespace bknby.Controllers
         }
 
         [Authorize]
+        [HttpGet]
+        public ActionResult GetRealEstateObject(int id)
+        {
+            var realObject = _realEstateObjectsService.GetRealEstateObject(id);
+            var realEstateObjectPhotos = _realEstateObjectsService.GetRealEstateObjectPhotos(realObject.Unid);
+            var resultObject = Mapper.Map<RealEstateObjectDto>(realObject);
+            var objectPhotos = Mapper.Map<List<RealEstateObjectPhotoDto>>(realEstateObjectPhotos);
+            resultObject.ObjectPhotos = objectPhotos;
+            return View("RealEstateObjectPage", resultObject);
+        }
+
+        [Authorize]
         public ActionResult ImportRealEstateObjects()
         {
             _realEstateObjectsService.ImportRealEstateObjects();

@@ -8,5 +8,7 @@ namespace BknDal.Repositories.Interfaces
     {
         void ImportRealEstateObjects();
         List<RealEstateObject> GetRealEstateObjects();
+        RealEstateObject GetRealEstateObject(int realEstateObjectId);
+        List<RealEstateObjectPhoto> GetRealEstateObjectPhotos(long unid);
     }
 }

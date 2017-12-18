@@ -15,6 +15,7 @@ namespace bknby.Util
             Mapper.Initialize(cfg =>
             {
                 cfg.CreateMap<RealEstateObject, RealEstateObjectDto>().ReverseMap();
+                cfg.CreateMap<RealEstateObjectPhoto, RealEstateObjectPhotoDto>().ReverseMap();
             });
         }
     }

@@ -74,5 +74,6 @@ namespace BknDto.Dto
         public Nullable<long> RequestId { get; set; }
         public string Price { get; set; }
         public Nullable<int> PriceHaggle { get; set; }
+        public List<RealEstateObjectPhotoDto> ObjectPhotos { get; set; }
     }
 }

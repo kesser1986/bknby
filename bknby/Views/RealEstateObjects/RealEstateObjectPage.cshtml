@@ -1,0 +1,72 @@
+﻿@using BknDto.Dto
+@model RealEstateObjectDto
+
+@{
+    ViewBag.Title = "Страница объекта";
+}
+
+
+<div class="col-xs-12">
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-9">
+        <h3>@Model.Address</h3>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <img width="570" height="382" src="@Model.ObjectPhotos.FirstOrDefault(p => p.isPrimary == true).Url" />
+  </div>
+  <div class="col-md-6 col-sm-12">
+    <div class="row">
+      <div class="col-sm-6 col-md-6">
+        <div class="obarea">
+          <div class="obarea__rows">
+            <span class="obarea__characteristic">Комнаты</span> <span class="obarea__value">
+              @Model.Rooms
+            </span>
+          </div>
+          <div class="obarea__rows"><span class="obarea__characteristic">Этаж / Этажность</span> <span class="obarea__value">@Model.Storey                        / @Model.Storeys</span></div>
+          <div class="obarea__rows"><span class="obarea__characteristic">Общая площадь</span> <span class="obarea__value">@Model.AreaTotal</span></div>
+          <div class="obarea__rows"><span class="obarea__characteristic">Жилая площадь</span> <span class="obarea__value">@Model.AreaLiving</span></div>
+          <div class="obarea__rows"><span class="obarea__characteristic">Площадь кухни</span> <span class="obarea__value">@Model.AreaKitchen</span></div>
+          <div class="obarea__rows"><span class="obarea__characteristic">Цена</span> <span class="obarea__value">@Model.Price 000 y.e.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-8 col-md-9">
+    <div class="description">
+      <div class="description__title">Описание квартиры</div>
+      <div class="description__text">
+        @Html.Raw(Model.Description) 
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <div class="description__charact">
+            Характеристика квартиры
+          </div>
+
+          <div class="description__rows"><span class="description__characteristic">Код объекта</span> <span class="description__value">@Model.Code</span></div>
+          <div class="description__rows"><span class="description__characteristic">Адрес</span> <span class="description__value">@Model.Address</span></div>
+          <div class="description__rows"><span class="description__characteristic">Комнаты</span> <span class="description__value">@Model.Rooms</span></div>
+          
+          <div class="description__rows"><span class="description__characteristic">Площади</span> <span class="description__value">@Model.AreaTotal                        / @Model.AreaLiving                        / @Model.AreaKitchen</span></div>
+          <div class="description__rows">
+            <span class="description__characteristic">Год постройки</span> <span class="description__value">@Model.BuildingYear</span>
+          </div>
+          <div class="description__rows">
+            <span class="description__characteristic">Этаж / Этажность</span>
+            <span class="description__value">@Model.Storey                        / @Model.Storeys</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

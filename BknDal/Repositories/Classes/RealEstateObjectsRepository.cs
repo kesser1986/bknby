@@ -11,6 +11,22 @@ namespace BknDal.Repositories.Classes
 {
     public class RealEstateObjectsRepository : BaseRepository<RealEstateObject, long>, IRealEstateObjectsRepository
     {
+        public RealEstateObject GetRealEstateObject(int realEstateObjectId)
+        {
+            using(var db = DbContextFactory.OpenContext())
+            {
+                return db.RealEstateObject.FirstOrDefault(p => p.RealEstateObjectId == realEstateObjectId);
+            }
+        }
+
+        public List<RealEstateObjectPhoto> GetRealEstateObjectPhotos(long unid)
+        {
+            using(var db = DbContextFactory.OpenContext())
+            {
+                return db.RealEstateObjectPhoto.Where(p => p.Unid == unid).ToList();
+            }
+        }
+
         public List<RealEstateObject> GetRealEstateObjects()
         {
             using(var db = DbContextFactory.OpenContext())
