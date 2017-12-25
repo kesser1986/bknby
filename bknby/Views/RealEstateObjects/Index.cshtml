@@ -18,12 +18,12 @@
     <tbody id="myTable">
     @foreach (var item in Model)
     {
-      <tr>
+      <tr object="@item.RealEstateObjectId">
         <td>@Html.ActionLink(item.Address, "GetRealEstateObject", "RealEstateObjects", new { id = item.RealEstateObjectId}, null)</td>
-        <td><span class="search-checkbox  icon icon-ok"></span></td>
-        <td><span class="search-checkbox  icon icon-ok"></span></td>
-        <td><span class="search-checkbox  icon icon-ok"></span></td>
-        <td><span class="search-checkbox  icon icon-ok"></span></td>
+        <td><span class="search-checkbox tvoya-stolitsa  icon icon-ok @(item.TvoyaStolitsa ? "search-checkbox-is-checked" : "") " ts="@item.TvoyaStolitsa.ToString()"></span></td>
+        <td><span class="search-checkbox confan icon icon-ok @(item.Confan ? "search-checkbox-is-checked" : "")" confan="@item.Confan.ToString()" ></span></td>
+        <td><span class="search-checkbox realt icon icon-ok @(item.Realt ? "search-checkbox-is-checked" : "")" realt="@item.Realt.ToString()" ></span></td>
+        <td><span class="search-checkbox onliner icon icon-ok @(item.Onliner ? "search-checkbox-is-checked" : "")" onliner="@item.Onliner.ToString()" ></span></td>
       </tr>
     }
     </tbody>

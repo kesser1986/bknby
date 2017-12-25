@@ -109,6 +109,37 @@ $(document).ready(function () {
         else {
             $(this).removeClass('search-checkbox-is-checked');
         }
+
+        var parent = $(this).parent().parent();
+        var objectId = parent.attr("object");
+        var params = "";
+        if ($(this).hasClass("tvoya-stolitsa"))
+            params = `RealEstateObjectId=${objectId}&TvoyaStolitsa=${$(this).hasClass('search-checkbox-is-checked')}`
+        if ($(this).hasClass("confan"))
+            params = `RealEstateObjectId=${objectId}&Confan=${$(this).hasClass('search-checkbox-is-checked')}`
+        if ($(this).hasClass("realt"))
+            params = `RealEstateObjectId=${objectId}&Realt=${$(this).hasClass('search-checkbox-is-checked')}`
+        if ($(this).hasClass("onliner"))
+            params = `RealEstateObjectId=${objectId}&Onliner=${$(this).hasClass('search-checkbox-is-checked')}`
+            //if ($(this).hasClass(".tvoya-stolitsa"))
+            //    if ($(this).hasClass(".tvoya-stolitsa"))
+            //        if ($(this).hasClass(".tvoya-stolitsa"))
+
+        
+        console.log(parent.children(".confan").attr('confan'));
+        $.ajax({
+            type: "POST",
+            url: "/RealEstateObjects/UpdateObjectExport",
+            data: params,
+            success: function (data) {
+
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
     });
+
+
 
 });

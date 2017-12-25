@@ -54,11 +54,21 @@ namespace bknby.Controllers
         }
 
         [Authorize]
+        [HttpPost]
+        public ActionResult UpdateObjectExport(RealEstateObjectDto model)
+        {
+            var data = new List<RealEstateObjectDto>();
+
+            return View("Index", data);
+        }
+
+        [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            var model = _realEstateObjectsService.GetRealEstateObjects();
+            var result = Mapper.Map<List<RealEstateObjectDto>>(model);
 
-            return View();
+            return View(result);
         }
 
         [Authorize]

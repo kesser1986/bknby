@@ -122,6 +122,10 @@ namespace BknDal.Repositories.Classes
                         itemObject.RequestId = string.IsNullOrEmpty(record.Element("request_id")?.Value) ? -1 : int.Parse(record.Element("request_id")?.Value);
                         itemObject.Price = record.Element("price")?.Value;
                         itemObject.PriceHaggle = string.IsNullOrEmpty(record.Element("price_haggle")?.Value) ? -1 : int.Parse(record.Element("price_haggle")?.Value);
+                        itemObject.Confan = true;
+                        itemObject.Realt = true;
+                        itemObject.TvoyaStolitsa = true;
+                        itemObject.Onliner = true;
 
                         var photos = record.Element("photos")?.Elements("photo");
                         foreach(var photo in photos)

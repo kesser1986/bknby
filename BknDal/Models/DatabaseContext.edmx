@@ -75,6 +75,10 @@
           <Property Name="RequestId" Type="bigint" />
           <Property Name="Price" Type="nvarchar" MaxLength="50" />
           <Property Name="PriceHaggle" Type="int" />
+          <Property Name="TvoyaStolitsa" Type="bit" Nullable="false" />
+          <Property Name="Confan" Type="bit" Nullable="false" />
+          <Property Name="Realt" Type="bit" Nullable="false" />
+          <Property Name="Onliner" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="RealEstateObjectPhoto">
           <Key>
@@ -164,6 +168,10 @@
           <Property Name="RequestId" Type="Int64" />
           <Property Name="Price" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PriceHaggle" Type="Int32" />
+          <Property Name="TvoyaStolitsa" Type="Boolean" Nullable="false" />
+          <Property Name="Realt" Type="Boolean" Nullable="false" />
+          <Property Name="Onliner" Type="Boolean" Nullable="false" />
+          <Property Name="Confan" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="RealEstateObject" EntityType="Self.RealEstateObject" />
@@ -188,6 +196,10 @@
           <EntitySetMapping Name="RealEstateObject">
             <EntityTypeMapping TypeName="BknModel.RealEstateObject">
               <MappingFragment StoreEntitySet="RealEstateObject">
+                <ScalarProperty Name="Confan" ColumnName="Confan" />
+                <ScalarProperty Name="Onliner" ColumnName="Onliner" />
+                <ScalarProperty Name="Realt" ColumnName="Realt" />
+                <ScalarProperty Name="TvoyaStolitsa" ColumnName="TvoyaStolitsa" />
                 <ScalarProperty Name="RealEstateObjectId" ColumnName="RealEstateObjectId" />
                 <ScalarProperty Name="Unid" ColumnName="Unid" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
