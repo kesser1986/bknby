@@ -23,32 +23,40 @@ namespace bknby.Modules
         {
             lock (_synclock)
             {
-                if (sent == false)
+                try
                 {
-                    string writePath = @"D:\\ath.txt";
-                    string logs = @"D:\\logs.txt";
-                    string text = DateTime.Now.ToShortTimeString();
-                    try
+                    if (sent == false)
                     {
-                        using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+                        string writePath = @"D:\\ath.txt";
+                        string logs = @"D:\\logs.txt";
+                        string text = DateTime.Now.ToShortTimeString();
+                        try
                         {
-                            sw.WriteLine(text);
+                            using (StreamWriter sw = new StreamWriter(writePath, false, System.Text.Encoding.Default))
+                            {
+                                sw.WriteLine(text);
+                            }
                         }
+                        catch (Exception e)
+                        {
+                            using (StreamWriter sw = new StreamWriter(logs, false, System.Text.Encoding.Default))
+                            {
+                                sw.WriteLine(e.Message);
+                            }
+                            Console.WriteLine(e.Message);
+                        }
+                        sent = true;
                     }
-                    catch (Exception e)
+                    else
                     {
-                        using (StreamWriter sw = new StreamWriter(logs, false, System.Text.Encoding.Default))
-                        {
-                            sw.WriteLine(e.Message);
-                        }
-                        Console.WriteLine(e.Message);
+                        sent = false;
                     }
-                    sent = true;
                 }
-                else
+                catch (Exception ex)
                 {
-                    sent = false;
+
                 }
+                
             }
         }
 
